@@ -1,0 +1,8 @@
+fastapi~=0.110.3
+uvicorn[standard]~=0.29.0
+sqlalchemy~=2.0.29
+pymysql
+python-multipart
+requests~=2.31.0
+starlette~=0.37.2
+pydantic~=2.7.1
