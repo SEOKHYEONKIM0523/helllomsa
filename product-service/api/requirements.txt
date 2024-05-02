@@ -3,4 +3,4 @@ uvicorn[stardard]
 sqlalchemy
 pymysql
 python-multipart
-requirements
+requests

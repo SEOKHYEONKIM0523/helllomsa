@@ -1,15 +1,11 @@
-from datetime import datetime
-
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class UserBase(BaseModel):
     userid: str
     name: str
     email: str
-
-    class Config:
-        from_attributes=True
 
 
 class UserLogin(BaseModel):
@@ -23,11 +19,13 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     mno: int
+    # regdate: datetime
     regdate: str
+
+    class Config:
+        from_attributes=True
 
 
 class Token(BaseModel):
     access_token: str
     token_type: str
-
-

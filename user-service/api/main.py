@@ -1,10 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
-import database as sess
-
 from fastapi.middleware.cors import CORSMiddleware
 
+import database as sess
+from api.routes import user
+
 app = FastAPI()
+
 # CORS 설정
 origins = [
     "http://localhost:3000",  # 허용할 프론트엔드 도메인
@@ -20,6 +22,11 @@ app.add_middleware(
 )
 
 
+app.include_router(user.router)
+
+
 if __name__ == '__main__':
     sess.create_tables()
     uvicorn.run('main:app', port=8010, reload=True)
+
+

@@ -1,4 +1,3 @@
-
 var express = require('express');
 var path = require('path');
 var request = require('request');
@@ -6,18 +5,18 @@ var port = 3000
 
 var app = express();
 
-var client_id = '';
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
+
+var client_id = 'eeCAwoPqKjNHz7WqddzW';
 var client_secret = '';
 var state = "RAMDOM_STATE";
 var redirectURI = encodeURI("http://127.0.0.1:3000/callback/naver");
 var api_url = "";
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/api', function (req,res){
-  res.json({messeage: "Hello, World!!"})
+app.get('/api', function (req, res) {
+  res.json({message: 'Hello, World!!'})
 });
 
 app.get('/login/naver', function (req, res) {
@@ -25,6 +24,7 @@ app.get('/login/naver', function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
   res.end("<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>");
 });
+
 app.get('/callback/naver', function (req, res) {
   code = req.query.code;
   state = req.query.state;
@@ -46,8 +46,16 @@ app.get('/callback/naver', function (req, res) {
   });
 });
 
+
 // 서버 시작
 app.listen(port, () => {
-  console.log(`frontend server on port ${port}`)
+  console.log(`fromtend server on port ${port}`)
 })
-module.exports = app;
+
+
+
+
+
+
+
+
